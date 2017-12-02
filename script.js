@@ -1,14 +1,14 @@
-/* global $ APIKEY navigator */
+/* global $ APIKEY navigator data */
 $(document).ready(function() {
     var location = {};
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(success, error);
         console.log(location);
     }
-    else {
-        alert("Geolocation unsupported");
-        console.log("stop");
-    }
+    // else {
+    //     alert("Geolocation unsupported");
+    //     console.log("stop");
+    // }
 
     function error() {
         alert("Your location is unavailable.");
@@ -20,31 +20,34 @@ $(document).ready(function() {
         console.log("lat");
         location.lon = position.coords.longitude;
         console.log("lon");
-        document.getElementById("lat").innerHTML = location.lat
+        document.getElementById("lat").innerHTML = location.lat;
         document.getElementById("lon").innerHTML = location.lon;
         console.log("success");
+        weather(position);
+    }
+
+    function weather(position) {
         $.ajax({
             method: "GET",
             url: "https://api.openweathermap.org/data/2.5/weather",
             data: { lat: location.lat, lon: location.lon, appid: APIKEY },
             dataType: "json",
             success: function(data) {
-                if (data.status == "ok") {
-                    console.log("call data");
-                    console.log(data);
-                    document.getElementById('main').innerHTML = data.weather[0].main;
-                    // data.weather[0].description;
-                    // data.weather[0].icon;
-                    // data.main.temp;
-                    // data.main.humidity;
-                    // data.main.temp_min;
-                    // data.main.temp_max;
-                    // data.wind.speed;
-                    // data.wind.deg;
-
-                    console.log(data);
-                }
+                console.log(data);
+                // for (var i = 0; i < data.length; i++) {
+                //document.getElementById('main').innerHTML = data.weather[0].main;
+                // data.weather[0].description;
+                // data.weather[0].icon;
+                document.getElementById("temp").innerHTML = data.main.temp;
+                // data.main.humidity;
+                // data.main.temp_min;
+                // data.main.temp_max;
+                // data.wind.speed;
+                // data.wind.deg;
+                console.log("call data");
+                console.log(data);
             }
+            // }
         });
 
         // var main;
