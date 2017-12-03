@@ -1,4 +1,4 @@
-/* global $ APIKEY navigator data */
+/* global $ APIKEY navigator data imperial*/
 $(document).ready(function() {
     var location = {};
     if (navigator.geolocation) {
@@ -30,20 +30,21 @@ $(document).ready(function() {
         $.ajax({
             method: "GET",
             url: "https://api.openweathermap.org/data/2.5/weather",
-            data: { lat: location.lat, lon: location.lon, appid: APIKEY },
+            data: { lat: location.lat, lon: location.lon, appid: APIKEY }, //units: imperial
             dataType: "json",
             success: function(data) {
                 console.log(data);
                 // for (var i = 0; i < data.length; i++) {
-                //document.getElementById('main').innerHTML = data.weather[0].main;
-                // data.weather[0].description;
-                // data.weather[0].icon;
+                document.getElementById('main').innerHTML = data.weather[0].main;
+                document.getElementById('description').innerHTML = data.weather[0].description;
+                //document.getElementById('icon').src = data.weather[0].icon;
                 document.getElementById("temp").innerHTML = data.main.temp;
-                // data.main.humidity;
+                document.getElementById("name").innerHTML = data.name;
+                document.getElementById("humidity").innerHTML = data.main.humidity;
                 // data.main.temp_min;
                 // data.main.temp_max;
-                // data.wind.speed;
-                // data.wind.deg;
+                document.getElementById("windSp").innerHTML = data.wind.speed;
+                document.getElementById("windDeg").innerHTML = data.wind.deg;
                 console.log("call data");
                 console.log(data);
             }
