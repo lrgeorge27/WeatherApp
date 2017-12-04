@@ -20,8 +20,8 @@ $(document).ready(function() {
         console.log("lat");
         location.lon = position.coords.longitude;
         console.log("lon");
-        document.getElementById("lat").innerHTML = location.lat;
-        document.getElementById("lon").innerHTML = location.lon;
+        // document.getElementById("lat").innerHTML = location.lat;
+        // document.getElementById("lon").innerHTML = location.lon;
         console.log("success");
         weather(position);
     }
@@ -30,10 +30,13 @@ $(document).ready(function() {
         $.ajax({
             method: "GET",
             url: "https://api.openweathermap.org/data/2.5/weather",
-            data: { lat: location.lat, lon: location.lon, appid: APIKEY }, //units: imperial
+            data: { lat: location.lat, lon: location.lon, units: "imperial", appid: APIKEY }, //units: imperial
             dataType: "json",
             success: function(data) {
                 console.log(data);
+                // var date = new Date();   unix time conversion for sunrise
+                // date.setTime(unixTime * 1000);
+
                 // for (var i = 0; i < data.length; i++) {
                 document.getElementById('main').innerHTML = data.weather[0].main;
                 document.getElementById('description').innerHTML = data.weather[0].description;
@@ -41,10 +44,10 @@ $(document).ready(function() {
                 document.getElementById("temp").innerHTML = data.main.temp;
                 document.getElementById("name").innerHTML = data.name;
                 document.getElementById("humidity").innerHTML = data.main.humidity;
-                // data.main.temp_min;
-                // data.main.temp_max;
+                document.getElementById("tempMin").innerHTML = data.main.temp_min;
+                document.getElementById("tempMax").innerHTML = data.main.temp_max;
                 document.getElementById("windSp").innerHTML = data.wind.speed;
-                document.getElementById("windDeg").innerHTML = data.wind.deg;
+                // document.getElementById("windDeg").innerHTML = data.wind.deg;
                 console.log("call data");
                 console.log(data);
             }
