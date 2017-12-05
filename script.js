@@ -40,7 +40,7 @@ $(document).ready(function() {
                 // for (var i = 0; i < data.length; i++) {
                 document.getElementById('main').innerHTML = data.weather[0].main;
                 document.getElementById('description').innerHTML = data.weather[0].description;
-                //document.getElementById('icon').src = data.weather[0].icon;
+                document.getElementById('icon').src = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
                 document.getElementById("temp").innerHTML = data.main.temp;
                 document.getElementById("name").innerHTML = data.name;
                 document.getElementById("humidity").innerHTML = data.main.humidity;
@@ -50,9 +50,18 @@ $(document).ready(function() {
                 // document.getElementById("windDeg").innerHTML = data.wind.deg;
                 console.log("call data");
                 console.log(data);
+
+                function convertToCelsius(fahrenheit) {
+                    var fahrenheit = data.main.temp;
+                    var celsius = (fahrenheit - 32) * 0.5556;
+                    document.getElementById("conversion").innerHTML = celsius;
+                    //return celsius;
+                }
+
             }
             // }
         });
+
 
         // var main;
         // var temp;
