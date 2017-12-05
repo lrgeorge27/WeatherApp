@@ -21,12 +21,14 @@
         <!--<p>Latitude: <span id="lat"></span> Longitude: <span id="lon"></span></p>-->
         <h2 id="main"></h2>
         <p> Conditions: <span id="description"></span></p>
-        <p>Temperature: <span id="temp"></span> degrees <span id="conversion"></span></p>
+        <p>Temperature: <span id="temp"></span>
+            <!--<span id="conversion"></span> degrees C--></p>
         <p>High: <span id="tempMax"></span> degrees, Low: <span id="tempMin"></span> degrees</p>
         <p>Humidity: <span id="humidity"></span>%</p>
         <p>Wind Speed: <span id="windSp"></span> mph</p>
         <img id="icon" src=""></img>
-        <button id="convert" onClick="convertToCelsius()">Convert Temperature to Celsius</button>
+        <button id="convertC" class="btn">Convert to Celsius</button>
+        <button id="convertF" class="btn">Convert to Fahrenheit</button>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

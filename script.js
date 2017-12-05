@@ -5,10 +5,6 @@ $(document).ready(function() {
         navigator.geolocation.getCurrentPosition(success, error);
         console.log(location);
     }
-    // else {
-    //     alert("Geolocation unsupported");
-    //     console.log("stop");
-    // }
 
     function error() {
         alert("Your location is unavailable.");
@@ -36,32 +32,64 @@ $(document).ready(function() {
                 console.log(data);
                 // var date = new Date();   unix time conversion for sunrise
                 // date.setTime(unixTime * 1000);
-
-                // for (var i = 0; i < data.length; i++) {
                 document.getElementById('main').innerHTML = data.weather[0].main;
                 document.getElementById('description').innerHTML = data.weather[0].description;
-                document.getElementById('icon').src = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
-                document.getElementById("temp").innerHTML = data.main.temp;
+                document.getElementById('icon').src = "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
+                document.getElementById("temp").innerHTML = data.main.temp + " deg F";
                 document.getElementById("name").innerHTML = data.name;
                 document.getElementById("humidity").innerHTML = data.main.humidity;
                 document.getElementById("tempMin").innerHTML = data.main.temp_min;
                 document.getElementById("tempMax").innerHTML = data.main.temp_max;
                 document.getElementById("windSp").innerHTML = data.wind.speed;
-                // document.getElementById("windDeg").innerHTML = data.wind.deg;
                 console.log("call data");
                 console.log(data);
 
-                function convertToCelsius(fahrenheit) {
+                $("#convertC").click(function() { //onClick function
+                    console.log("start");
                     var fahrenheit = data.main.temp;
                     var celsius = (fahrenheit - 32) * 0.5556;
-                    document.getElementById("conversion").innerHTML = celsius;
-                    //return celsius;
-                }
+                    document.getElementById("temp").innerHTML = celsius + " deg C";
+
+                    var fahrenheitMin = data.main.temp_min;
+                    var celsiusMin = (fahrenheitMin - 32) * 0.5556;
+                    document.getElementById("tempMin").innerHTML = celsiusMin + " deg C";
+
+                    var fahrenheitMax = data.main.temp_max;
+                    var celsiusMax = (fahrenheitMax - 32) * 0.5556;
+                    document.getElementById("tempMax").innerHTML = celsiusMax + " deg C";
+
+                    console.log("convert");
+                });
+
+                $("#convertF").click(function() { //onClick function
+                    console.log("start");
+                    var fahrenheit = data.main.temp;
+                    document.getElementById("temp").innerHTML = fahrenheit + " deg F";
+                    document.getElementById("tempMin").innerHTML = data.main.temp_min + " deg F";
+                    document.getElementById("tempMax").innerHTML = data.main.temp_max + " deg F";
+                    console.log("convert");
+                });
+
+
+                // function convertToCelsius(fahrenheit) {
+                //     console.log("start conversion");
+                //     var fahrenheit = data.main.temp;
+                //     var celsius = (fahrenheit - 32) * 0.5556;
+                //     document.getElementById("conversion").innerHTML = celsius;
+                //     console.log("celsius");
+                //return celsius;
+                //}
 
             }
             // }
         });
 
+        // $("#convert").click(function() {
+        //     var fahrenheit = data.main.temp;
+        //     var celsius = (fahrenheit - 32) * 0.5556;
+        //     document.getElementById("conversion").innerHTML = celsius;
+
+        // });
 
         // var main;
         // var temp;
