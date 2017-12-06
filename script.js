@@ -23,7 +23,7 @@ $(document).ready(function() {
     }
 
     function weather(position) {
-        $.ajax({
+        $.ajax({ //ajax needs to be inside the function calling the location in order to wait for the geolocation parameters to run.
             method: "GET",
             url: "https://api.openweathermap.org/data/2.5/weather",
             data: { lat: location.lat, lon: location.lon, units: "imperial", appid: APIKEY }, //units: imperial
