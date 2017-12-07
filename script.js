@@ -48,15 +48,18 @@ $(document).ready(function() {
                     console.log("start");
                     var fahrenheit = data.main.temp;
                     var celsius = (fahrenheit - 32) * 0.5556;
-                    document.getElementById("temp").innerHTML = celsius + " deg C";
+                    var celsiusRd = Number((celsius).toFixed(2));
+                    document.getElementById("temp").innerHTML = celsiusRd + " deg C";
 
                     var fahrenheitMin = data.main.temp_min;
                     var celsiusMin = (fahrenheitMin - 32) * 0.5556;
-                    document.getElementById("tempMin").innerHTML = celsiusMin + " deg C";
+                    var celsiusRdMin = Number((celsiusMin).toFixed(2));
+                    document.getElementById("tempMin").innerHTML = celsiusRdMin + " deg C";
 
                     var fahrenheitMax = data.main.temp_max;
                     var celsiusMax = (fahrenheitMax - 32) * 0.5556;
-                    document.getElementById("tempMax").innerHTML = celsiusMax + " deg C";
+                    var celsiusRdMax = Number((celsiusMax).toFixed(2));
+                    document.getElementById("tempMax").innerHTML = celsiusRdMax + " deg C";
 
                     console.log("convert");
                 });
@@ -70,70 +73,38 @@ $(document).ready(function() {
                     console.log("convert");
                 });
 
+                $.ajax({ //ajax needs to be inside the function calling the location in order to wait for the geolocation parameters to run.
+                    method: "GET",
+                    url: "https://api.openweathermap.org/data/2.5/forecast",
+                    data: { lat: location.lat, lon: location.lon, units: "imperial", appid: APIKEY }, //units: imperial
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+                        for (var i = 0; i < data.list[6]; i++) {
+                            data.list[i].dt_txt;
+                            data.list[i].main.temp_max;
+                            data.list[i].main.temp_min;
 
-                // function convertToCelsius(fahrenheit) {
-                //     console.log("start conversion");
-                //     var fahrenheit = data.main.temp;
-                //     var celsius = (fahrenheit - 32) * 0.5556;
-                //     document.getElementById("conversion").innerHTML = celsius;
-                //     console.log("celsius");
-                //return celsius;
-                //}
+                        }
 
+                        // $("#bg-img").change(function(event){
+                        //     var backgroundImg = weather(data.weather[0].main);
+                        //     function weather(main) {
+                        //         // if (weather == "cloudy") {
+                        //         //     return "bgimg.jpg"
+                        //         // }
+                        //         if (weather == "clear") {
+                        //             return "ak-ocean-sm.jpg";
+                        //         }
+                        //     $("body").css("background", "url(" + backgroundImg + ")");
+                        //     }
+
+                        //     });
+
+                    }
+                });
             }
-            // }
+
         });
-
-        // $("#convert").click(function() {
-        //     var fahrenheit = data.main.temp;
-        //     var celsius = (fahrenheit - 32) * 0.5556;
-        //     document.getElementById("conversion").innerHTML = celsius;
-
-        // });
-
-        // var main;
-        // var temp;
-        // var tempMin;
-        // var tempMax;
-        // var description;
-        // var humidity;
-        // var windSp;
-        // var windDeg;
-        // var icon =
-        //     window.onload = function() {
-        //         var main = document.getElementById('main');
-        //         var temp = document.getElementById('temp');
-        //         var tempMin = document.getElementById('tempMin');
-        //         var tempMax = document.getElementById('tempMax');
-        //         var description = document.getElementById('description');
-        //         var humidity = document.getElementById('humidity');
-        //         var windSp = document.getElementById('windSp');
-        //         var windDeg = document.getElementById('windDeg');
-        //         var icon = document.getElementById('icon');
-
-        //         update(weather);
-        //     }
-
-        // function update(weather) {
-        //     main.innerHTML = weather.main;
-        //     temp.innerHTML = weather.temp;
-        //     tempMin.innerHTML = weather.tempMin;
-        //     tempMax.innerHTML = weather.tempMax;
-        //     description.innerHTML = weather.description;
-        //     humidity.innerHTML = weather.humidity;
-        //     windSp.innerHTML = weather.windSp;
-        //     windDeg.innerHTML = weather.windDeg;
-        //     icon.src = weather.icon + "jpg"
-
-        // }
-
-        // // for (var i = 0; i < data.sources.length; i++) { //did not do sources[] because we are running through entire array
-        // //     var source = document.createElement("OPTION");
-        // //     source.setAttribute("value", data.sources[i].id)
-        // //     source.innerHTML = data.sources[i].name;
-        // //     document.getElementById("selection").appendChild(source);
-        // //     console.log("display");
-
-
     }
 });
