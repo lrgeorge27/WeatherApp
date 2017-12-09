@@ -80,11 +80,29 @@ $(document).ready(function() {
                     dataType: "json",
                     success: function(data) {
                         console.log(data);
-                        for (var i = 0; i < data.list[6]; i++) {
-                            data.list[i].dt_txt;
-                            data.list[i].main.temp_max;
-                            data.list[i].main.temp_min;
+                        for (var i = 0; i <= 6; i++) {
+                            console.log("start");
+                            var date = document.createElement("UL");
+                            date.innerHTML = "Date:" + data.list[i].dt_txt;
+                            console.log("date");
+                            document.getElementById("day").appendChild(date);
 
+                            var max = document.createElement("LI");
+                            max.innerHTML = "High:" + data.list[i].main.temp_max + "deg F";
+                            document.getElementById("day").appendChild(max);
+
+                            var min = document.createElement("LI");
+                            min.innerHTML = "Low:" + data.list[i].main.temp_min + "deg F";
+                            document.getElementById("day").appendChild(min);
+
+                            for (var i = 0; i < data.list[i].weather.length; i++) {
+                                var weather = document.createElement("LI");
+                                weather.innerHTML = data.list[i].weather[i].main;
+                                document.getElementById("day").appendChild(weather);
+                                // data.list[i].weather[i].icon;
+                                // 
+                                //data.list[i].weather[i].description;
+                            }
                         }
 
                         // $("#bg-img").change(function(event){
