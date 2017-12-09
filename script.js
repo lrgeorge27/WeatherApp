@@ -80,28 +80,29 @@ $(document).ready(function() {
                     dataType: "json",
                     success: function(data) {
                         console.log(data);
-                        for (var i = 0; i <= 6; i++) {
+                        for (var i = 0; i <= 8; i++) {
                             console.log("start");
-                            var date = document.createElement("UL");
-                            date.innerHTML = "Date:" + data.list[i].dt_txt;
+                            var date = document.createElement("P");
+                            date.innerHTML = data.list[i].dt_txt;
                             console.log("date");
                             document.getElementById("day").appendChild(date);
 
-                            var max = document.createElement("LI");
-                            max.innerHTML = "High:" + data.list[i].main.temp_max + "deg F";
-                            document.getElementById("day").appendChild(max);
+                            var temp = document.createElement("P");
+                            temp.innerHTML = "Temp:" + data.list[i].main.temp + "deg F";
+                            document.getElementById("day").appendChild(temp);
 
-                            var min = document.createElement("LI");
-                            min.innerHTML = "Low:" + data.list[i].main.temp_min + "deg F";
-                            document.getElementById("day").appendChild(min);
+                            // var min = document.createElement("LI");
+                            // min.innerHTML = "Low:" + data.list[i].main.temp_min + "deg F";
+                            // document.getElementById("day").appendChild(min);
 
-                            for (var i = 0; i < data.list[i].weather.length; i++) {
-                                var weather = document.createElement("LI");
-                                weather.innerHTML = data.list[i].weather[i].main;
+                            for (var j = 0; j < data.list[i].weather.length; j++) {
+                                var weather = document.createElement("P");
+                                weather.innerHTML = data.list[i].weather[j].main;
                                 document.getElementById("day").appendChild(weather);
-                                // data.list[i].weather[i].icon;
-                                // 
-                                //data.list[i].weather[i].description;
+
+                                var icon = document.createElement("IMG");
+                                icon.src = "https://openweathermap.org/img/w/" + data.list[i].weather[j].icon + ".png";
+                                document.getElementById("day").appendChild(icon);
                             }
                         }
 
@@ -121,6 +122,12 @@ $(document).ready(function() {
 
                     }
                 });
+                // $.ajax({
+                //     method: "GET"
+                //     url: "http://tile.openweathermap.org/map/" + data + ".png?appid=" + APIKEY,
+                //     data: { lat: location.lat, lon: location.lon, layer: "precipitation_new", z: 3 },
+
+                // })
             }
 
         });
