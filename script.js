@@ -30,8 +30,6 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 console.log(data);
-                // var date = new Date();   unix time conversion for sunrise
-                // date.setTime(unixTime * 1000);
                 document.getElementById('main').innerHTML = data.weather[0].main;
                 document.getElementById('description').innerHTML = data.weather[0].description;
                 document.getElementById('icon').src = "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
@@ -41,11 +39,11 @@ $(document).ready(function() {
                 document.getElementById("tempMin").innerHTML = data.main.temp_min;
                 document.getElementById("tempMax").innerHTML = data.main.temp_max;
                 document.getElementById("windSp").innerHTML = data.wind.speed;
-                console.log("call data");
-                console.log(data);
+                // console.log("call data");
+                // console.log(data);
 
                 $("#convertC").click(function() { //onClick function
-                    console.log("start");
+                    // console.log("start");
                     var fahrenheit = data.main.temp;
                     var celsius = (fahrenheit - 32) * 0.5556;
                     var celsiusRd = Number((celsius).toFixed(2));
@@ -61,18 +59,40 @@ $(document).ready(function() {
                     var celsiusRdMax = Number((celsiusMax).toFixed(2));
                     document.getElementById("tempMax").innerHTML = celsiusRdMax + " deg C";
 
-                    console.log("convert");
+                    // console.log("convert");
                 });
 
                 $("#convertF").click(function() { //onClick function
-                    console.log("start");
+                    // console.log("start");
                     var fahrenheit = data.main.temp;
                     document.getElementById("temp").innerHTML = fahrenheit + " deg F";
                     document.getElementById("tempMin").innerHTML = data.main.temp_min + " deg F";
                     document.getElementById("tempMax").innerHTML = data.main.temp_max + " deg F";
-                    console.log("convert");
+                    // console.log("convert");
                 });
 
+                // $("#background").replaceWith(function(w) {
+                                //     console.log("bg start");
+                //     for (var i = 0; i < data.weather; i++) {
+                //         var w = data.weather[i].id;
+                //         console.log("bg loop");
+                //         if (w == 800) {
+                //             document.getElementById("background").style.backgroundImage = "url('ak-ocean-sm.jpg')";
+                //         }
+                //         else if (w >= 801 && w <= 804) {
+                //             document.getElementById("background").style.backgroundImage = "url('cl-skyscraper-sm.jpg')";
+                //         }
+                //         else if (w >= 300 && w <= 531) {
+                //             document.getElementById("background").style.backgroundImage = "url('wk-rain-sm.jpg')";
+                //         }
+                //         else if (w >= 600 && w <= 622) {
+                //             document.getElementById("background").style.backgroundImage = "url('tk-deer-sm.jpg')";
+                //         }
+                //         else if (w >= 200 && w <= 232) {
+                //             document.getElementById("background").style.backgroundImage = "url('bm-lighting-sm.jpg')";
+                //         }
+                //         console.log("today");
+                //     };
                 $.ajax({ //ajax needs to be inside the function calling the location in order to wait for the geolocation parameters to run.
                     method: "GET",
                     url: "https://api.openweathermap.org/data/2.5/forecast",
@@ -91,10 +111,6 @@ $(document).ready(function() {
                             temp.innerHTML = "Temp:" + data.list[i].main.temp + "deg F";
                             document.getElementById("day").appendChild(temp);
 
-                            // var min = document.createElement("LI");
-                            // min.innerHTML = "Low:" + data.list[i].main.temp_min + "deg F";
-                            // document.getElementById("day").appendChild(min);
-
                             for (var j = 0; j < data.list[i].weather.length; j++) {
                                 var weather = document.createElement("P");
                                 weather.innerHTML = data.list[i].weather[j].main;
@@ -106,30 +122,12 @@ $(document).ready(function() {
                             }
                         }
 
-                        // $("#bg-img").change(function(event){
-                        //     var backgroundImg = weather(data.weather[0].main);
-                        //     function weather(main) {
-                        //         // if (weather == "cloudy") {
-                        //         //     return "bgimg.jpg"
-                        //         // }
-                        //         if (weather == "clear") {
-                        //             return "ak-ocean-sm.jpg";
-                        //         }
-                        //     $("body").css("background", "url(" + backgroundImg + ")");
-                        //     }
-
-                        //     });
 
                     }
+
                 });
-                // $.ajax({
-                //     method: "GET"
-                //     url: "http://tile.openweathermap.org/map/" + data + ".png?appid=" + APIKEY,
-                //     data: { lat: location.lat, lon: location.lon, layer: "precipitation_new", z: 3 },
-
-                // })
             }
-
         });
+
     }
 });
