@@ -72,26 +72,26 @@ $(document).ready(function() {
                 });
 
                 // $("#background").replaceWith(function(w) {
-                                //     console.log("bg start");
-                //     for (var i = 0; i < data.weather; i++) {
-                //         var w = data.weather[i].id;
+                //     console.log("bg start");
+                //     for (var i = 0; i < data.weather; i++) { don't need
+                var w = data.weather[0].id;
                 //         console.log("bg loop");
-                //         if (w == 800) {
-                //             document.getElementById("background").style.backgroundImage = "url('ak-ocean-sm.jpg')";
-                //         }
-                //         else if (w >= 801 && w <= 804) {
-                //             document.getElementById("background").style.backgroundImage = "url('cl-skyscraper-sm.jpg')";
-                //         }
-                //         else if (w >= 300 && w <= 531) {
-                //             document.getElementById("background").style.backgroundImage = "url('wk-rain-sm.jpg')";
-                //         }
-                //         else if (w >= 600 && w <= 622) {
-                //             document.getElementById("background").style.backgroundImage = "url('tk-deer-sm.jpg')";
-                //         }
-                //         else if (w >= 200 && w <= 232) {
-                //             document.getElementById("background").style.backgroundImage = "url('bm-lighting-sm.jpg')";
-                //         }
-                //         console.log("today");
+                if (w == 800) {
+                    document.getElementById("background").style.backgroundImage = "url('ak-ocean-sm.jpg')";
+                }
+                else if (w >= 801 && w <= 804) {
+                    document.getElementById("background").style.backgroundImage = "url('cl-skyscraper-sm.jpg')";
+                }
+                else if (w >= 300 && w <= 531) {
+                    document.getElementById("background").style.backgroundImage = "url('wk-rain-sm.jpg')";
+                }
+                else if (w >= 600 && w <= 622) {
+                    document.getElementById("background").style.backgroundImage = "url('tk-deer-sm.jpg')";
+                }
+                else if (w >= 200 && w <= 232) {
+                    document.getElementById("background").style.backgroundImage = "url('bm-lighting-sm.jpg')";
+                }
+                console.log("today");
                 //     };
                 $.ajax({ //ajax needs to be inside the function calling the location in order to wait for the geolocation parameters to run.
                     method: "GET",

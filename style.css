@@ -1,6 +1,5 @@
 .bg-image {
-    background: url("ak-ocean-sm.jpg") no-repeat center center fixed;
-    background-color: aqua;
+    /*background: url("ak-ocean-sm.jpg") no-repeat center center fixed;*/
     background-size: cover;
     height: 100vh;
     width: 100vw;
@@ -9,10 +8,22 @@
 p {
     font: Helvetica;
     font-size: 18px;
-    /*background-color:white;*/
+    /*background-color: white;*/
 }
 
 #icon {
     height: 15vh;
     width: 15vh;
+}
+
+.display {
+    background-color: rgba(220, 232, 243, 0.30);
+    height: 50vh;
+    width: 50vw;
+}
+
+.displayForecast {
+    background-color: rgba(220, 232, 243, 0.30);
+    width: 50vh;
+    color: white;
 }
