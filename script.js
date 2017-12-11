@@ -71,11 +71,7 @@ $(document).ready(function() {
                     // console.log("convert");
                 });
 
-                // $("#background").replaceWith(function(w) {
-                //     console.log("bg start");
-                //     for (var i = 0; i < data.weather; i++) { don't need
                 var w = data.weather[0].id;
-                //         console.log("bg loop");
                 if (w == 800) {
                     document.getElementById("background").style.backgroundImage = "url('ak-ocean-sm.jpg')";
                 }
