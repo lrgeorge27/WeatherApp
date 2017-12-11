@@ -71,28 +71,29 @@ $(document).ready(function() {
                     // console.log("convert");
                 });
 
-                // $("#background").replaceWith(function(w) {
-                                //     console.log("bg start");
-                //     for (var i = 0; i < data.weather; i++) {
-                //         var w = data.weather[i].id;
-                //         console.log("bg loop");
-                //         if (w == 800) {
-                //             document.getElementById("background").style.backgroundImage = "url('ak-ocean-sm.jpg')";
-                //         }
-                //         else if (w >= 801 && w <= 804) {
-                //             document.getElementById("background").style.backgroundImage = "url('cl-skyscraper-sm.jpg')";
-                //         }
-                //         else if (w >= 300 && w <= 531) {
-                //             document.getElementById("background").style.backgroundImage = "url('wk-rain-sm.jpg')";
-                //         }
-                //         else if (w >= 600 && w <= 622) {
-                //             document.getElementById("background").style.backgroundImage = "url('tk-deer-sm.jpg')";
-                //         }
-                //         else if (w >= 200 && w <= 232) {
-                //             document.getElementById("background").style.backgroundImage = "url('bm-lighting-sm.jpg')";
-                //         }
-                //         console.log("today");
-                //     };
+                // set background image
+                var backgroundElement = document.getElementById('background');
+                var backgroundImage = '';
+                var weatherId = data.weather[0].id; // we hardcode this index since we only ask for one weather location at the moment
+
+                if (weatherId === 800) {
+                  backgroundImage = 'ak-ocean-sm.jpg';
+                }
+                else if (weatherId >= 801 && weatherId <= 804) {
+                  backgroundImage = 'cl-skyscraper-sm.jpg';
+                }
+                else if (weatherId >= 300 && weatherId <= 531) {
+                  backgroundImage = 'tk-deer-sm.jpg';
+                }
+                else if (weatherId >= 600 && weatherId <= 622) {
+                  backgroundImage = 'tk-deer-sm.jpg';
+                }
+                else if (weatherId >= 200 && weatherId <= 232) {
+                  backgroundImage = 'bm-lighting-sm.jpg';
+                }
+                backgroundElement.style.backgroundImage = "url('" + backgroundImage + "')";
+                // end set background image
+
                 $.ajax({ //ajax needs to be inside the function calling the location in order to wait for the geolocation parameters to run.
                     method: "GET",
                     url: "https://api.openweathermap.org/data/2.5/forecast",
